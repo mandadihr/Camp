@@ -8,7 +8,7 @@ var express    = require("express"),
     seedDB     = require("./seeds"),
     passport   = require("passport"),
     LocalStrategy = require("passport-local");
-    SessionStore = require('session-mongoose')(express);
+    //SessionStore = require('session-mongoose')(express);
     //cookieSession = require('cookie-session')
 
 //requiring routes    
@@ -19,28 +19,20 @@ var commentRoutes = require("./routes/comments"),
 
 // database Go_camp is created and used 
 //mongoose.connect("mongodb://localhost/Go_camp");
-mongoose.connect("mongodb://mandadi:Deadpool.007@ds235768.mlab.com:35768/go_camp");
+mongoose.connect("mongodb://<dbuser>:<dbpassword>@ds235768.mlab.com:35768/go_camp");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 //seedDB();
 
 // PASSPORT CONFIGURATION
-//app.use(require("express-session")({
-  //  secret: "Who gave you the key",
-   // resave: false,
-    //saveUninitialized: false
-//}));
+app.use(require("express-session")({
+  secret: "Who gave you the key",
+   resave: false,
+    saveUninitialized: false
+}));
 
-app.use(
-    express.session({
-      store: new SessionStore({
-      url: 'mongodb://localhost/session',
-      interval: 1200000
-    }),
-    cookie: { maxAge: 1200000 },
-    secret: 'my secret'
-  }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
