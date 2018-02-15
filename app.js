@@ -7,8 +7,9 @@ var express    = require("express"),
     User       = require("./models/user");
     seedDB     = require("./seeds"),
     passport   = require("passport"),
-    LocalStrategy = require("passport-local"),
-    cookieSession = require('cookie-session')
+    LocalStrategy = require("passport-local");
+    SessionStore = require('session-mongoose')(express);
+    //cookieSession = require('cookie-session')
 
 //requiring routes    
 var commentRoutes = require("./routes/comments"),
@@ -25,11 +26,21 @@ app.use(express.static(__dirname + "/public"));
 //seedDB();
 
 // PASSPORT CONFIGURATION
-app.use(require("cookie-session")({
-    secret: "Who gave you the key",
-    resave: false,
-    saveUninitialized: false
-}));
+//app.use(require("express-session")({
+  //  secret: "Who gave you the key",
+   // resave: false,
+    //saveUninitialized: false
+//}));
+
+app.use(
+    express.session({
+      store: new SessionStore({
+      url: 'mongodb://localhost/session',
+      interval: 1200000
+    }),
+    cookie: { maxAge: 1200000 },
+    secret: 'my secret'
+  }));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
