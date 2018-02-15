@@ -7,7 +7,8 @@ var express    = require("express"),
     User       = require("./models/user");
     seedDB     = require("./seeds"),
     passport   = require("passport"),
-    LocalStrategy = require("passport-local");
+    LocalStrategy = require("passport-local"),
+    cookieSession = require('cookie-session')
 
 //requiring routes    
 var commentRoutes = require("./routes/comments"),
@@ -24,7 +25,7 @@ app.use(express.static(__dirname + "/public"));
 //seedDB();
 
 // PASSPORT CONFIGURATION
-app.use(require("express-session")({
+app.use(require("cookie-session")({
     secret: "Who gave you the key",
     resave: false,
     saveUninitialized: false
