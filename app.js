@@ -8,8 +8,7 @@ var express    = require("express"),
     seedDB     = require("./seeds"),
     passport   = require("passport"),
     LocalStrategy = require("passport-local");
-    //SessionStore = require('session-mongoose')(express);
-    //cookieSession = require('cookie-session')
+    
 
 //requiring routes    
 var commentRoutes = require("./routes/comments"),
