@@ -19,7 +19,7 @@ var commentRoutes = require("./routes/comments"),
 
 // database Go_camp is created and used 
 //mongoose.connect("mongodb://localhost/Go_camp");
-mongoose.connect("mongodb://<dbuser>:<dbpassword>@ds235768.mlab.com:35768/go_camp");
+mongoose.connect("mongodb://mandadi:Deadpool.007@ds235768.mlab.com:35768/go_camp");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
