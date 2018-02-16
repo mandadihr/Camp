@@ -12,5 +12,5 @@ var campgroundSchema = new mongoose.Schema({
         }
     ]
 });
-// catSchema is taken and compiled into a model which returns an object that has a bunch of methods and adds in methods for CRUD operations
+// campgorundSchema is taken and compiled into a model which returns an object that has a bunch of methods and adds in methods for CRUD operations
 module.exports = mongoose.model("Campground", campgroundSchema);

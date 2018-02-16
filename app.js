@@ -15,11 +15,6 @@ var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index");
 
-
-// database Go_camp is created and used 
-//mongoose.connect("mongodb://localhost/Go_camp");
-
-
 //connects to mongolab. It is a databse server
 mongoose.connect("mongodb://mandadi:Deadpool.007@ds235768.mlab.com:35768/go_camp");
 app.use(bodyParser.urlencoded({extended: true}));
